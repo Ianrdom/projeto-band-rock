@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap");
+
+body {
+  margin: 0;
+}
+
+#app {
+  max-width: 100%;
+  margin: 0 auto;
+  font-weight: normal;
+  height: 100vh;
+}
+
+main {
+  /* height: 80%; */
+  color: white;
+  background-color: #00002c;
+  border-bottom: 1px solid #0f0858;
+  border-top: 1px solid #0f0858;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.router-link-active {
+  color: #98b7e1;
+}
+
+.title {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+header span {
+  padding: 0 20px;
+}
+
+header {
+  height: 10%;
+  background-color: #00002c;
+  color: white;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  justify-content: space-between;
+  border-bottom: 1px#1f1084;
+}
+.form-input {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+footer {
+  height: 10%;
+  background-color: #00002c;
+  color: white;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.input-maior {
+  width: 25%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 5px;
+}
+.input-menor {
+  width: 15%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 5px;
+  background-color: white;
+}
+
+.form-input button {
+  padding: 0.5rem;
+  width: 15%;
+  border: 1px solid rgb(20, 113, 20);
+  border-radius: 10px;
+  background-color: rgb(20, 113, 20);
+  color: white;
+  font-weight: bold;
+  margin-left: 1px;
+}
+
+/* .list-editoras {
+  display: flex;
+  justify-content: center;
+} */
+table {
+  width: 50%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  border: 1px solid black;
+  font-size: 1.1rem;
+}
+table thead {
+  background-color: rgb(7, 59, 94);
+  color: white;
+  font-weight: bold;
+}
+table tbody tr {
+  text-align: center;
+}
+table tbody tr:nth-child(odd) {
+  background-color: rgb(153, 191, 248);
+}
+.artista img {
+  padding: 10px;
+  height: 100px;
+  border-radius: 50%;
+}
+.artista {
+  margin: 10px;
+  border: 1px solid #5137ff;
+  width: 90%;
+}
+.descricao {
+  padding: 10px;
+  display: flex;
+}
+.descricao span {
+  padding: 0 20px;
+}
+.daily-filtro{ 
+  display: flex;
+  text-align: center;
+}
+.daily-items{
+  display: flex;
+  align-self: center;
+}
