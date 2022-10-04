@@ -12,11 +12,11 @@ body {
 }
 
 main {
-  /* height: 80%; */
   color: white;
   background-color: #00002c;
   border-bottom: 1px solid #0f0858;
   border-top: 1px solid #0f0858;
+  min-height: 80vh;
 }
 
 a {
@@ -121,7 +121,7 @@ table tbody tr:nth-child(odd) {
 .artista {
   margin: 10px;
   border: 1px solid #5137ff;
-  width: 90%;
+  width: 10%;
 }
 .descricao {
   padding: 10px;
@@ -130,11 +130,44 @@ table tbody tr:nth-child(odd) {
 .descricao span {
   padding: 0 20px;
 }
-.daily-filtro{ 
+.daily-filtro {
   display: flex;
   text-align: center;
-}
-.daily-items{
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.daily-items {
   align-self: center;
+  width: 90%;
+  background-color: #ffffff11;
+  margin: 20px 0;
+  min-height: 200px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.caminho-diario {
+  display: flex;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.banda-card {
+  align-self: center;
+  width: 90%;
+  background-color: #6563e64b;
+  margin: 20px 0;
+  min-height: 200px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.titulo-card {
+  align-self: self-start;
+  padding-left: 20px;
 }

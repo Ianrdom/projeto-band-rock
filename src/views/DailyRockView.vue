@@ -14,20 +14,3 @@
     </div>
   </div>
 </template>
-<style scoped>
-.daily-filtro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-.daily-items {
-  width: 90%;
-  background-color: #ffffff11;
-  margin: 20px 0;
-  min-height: 200px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-}
-</style>
