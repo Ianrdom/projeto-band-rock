@@ -171,3 +171,53 @@ table tbody tr:nth-child(odd) {
   align-self: self-start;
   padding-left: 20px;
 }
+.card {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 210px 130px 80px;
+  grid-template-areas: "image" "text";
+
+  border-radius: 18px;
+  background-color: #6563e64b;
+
+  box-shadow: 5px 5px 15px rgba(129, 117, 231, 0.9);
+  font-family: roboto;
+  text-align: center;
+  width: 300px;
+}
+.card-image {
+  grid-area: image;
+}
+.card-text {
+  grid-area: text;
+}
+.card-image {
+  grid-area: image;
+  background: url("src/assets/random_metallica_img.jpg");
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-size: cover;
+}
+.card-text {
+  grid-area: text;
+  margin: 25px;
+}
+
+.card-text p {
+  color: grey;
+  font-size: 15px;
+  font-weight: 300;
+}
+.card-text h2 {
+  margin-top: 0px;
+  font-size: 28px;
+}
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+}
+.card {
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin: 30px;
+}
