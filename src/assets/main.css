@@ -48,11 +48,6 @@ header {
   justify-content: space-between;
   border-bottom: 1px#1f1084;
 }
-.form-input {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-}
 
 footer {
   height: 10%;
@@ -64,72 +59,6 @@ footer {
   padding-left: 20px;
 }
 
-.input-maior {
-  width: 25%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin: 5px;
-}
-.input-menor {
-  width: 15%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin: 5px;
-  background-color: white;
-}
-
-.form-input button {
-  padding: 0.5rem;
-  width: 15%;
-  border: 1px solid rgb(20, 113, 20);
-  border-radius: 10px;
-  background-color: rgb(20, 113, 20);
-  color: white;
-  font-weight: bold;
-  margin-left: 1px;
-}
-
-/* .list-editoras {
-  display: flex;
-  justify-content: center;
-} */
-table {
-  width: 50%;
-  border-collapse: collapse;
-  margin: 0 auto;
-  border: 1px solid black;
-  font-size: 1.1rem;
-}
-table thead {
-  background-color: rgb(7, 59, 94);
-  color: white;
-  font-weight: bold;
-}
-table tbody tr {
-  text-align: center;
-}
-table tbody tr:nth-child(odd) {
-  background-color: rgb(153, 191, 248);
-}
-.artista img {
-  padding: 10px;
-  height: 100px;
-  border-radius: 50%;
-}
-.artista {
-  margin: 10px;
-  border: 1px solid #5137ff;
-  width: 10%;
-}
-.descricao {
-  padding: 10px;
-  display: flex;
-}
-.descricao span {
-  padding: 0 20px;
-}
 .daily-filtro {
   display: flex;
   text-align: center;
@@ -167,47 +96,58 @@ table tbody tr:nth-child(odd) {
   display: flex;
   flex-direction: column;
 }
-.titulo-card {
-  align-self: self-start;
-  padding-left: 20px;
+.artistas {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
-.card {
-  display: grid;
-  grid-template-columns: 300px;
-  grid-template-rows: 210px 100px;
-  grid-template-areas: "image" "text";
 
-  border-radius: 18px;
-  background-color: #6563e64b;
-
-  box-shadow: 5px 5px 15px rgba(129, 117, 231, 0.9);
-  font-family: roboto;
-  text-align: center;
+.artista {
+  margin: 30px auto;
   width: 300px;
-}
-
-.card-image {
-  grid-area: image;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  background-size: cover;
-}
-.card-text {
-  opacity: 1;
-  grid-area: text;
-  margin: 25px;
-}
-
-.card-text h2 {
-  margin-top: 0px;
-  font-size: 28px;
-}
-.card:hover {
-  transform: scale(1.1);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
-}
-.card {
-  transition: 0.5s ease;
+  height: 300px;
+  border-radius: 40px;
+  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25),
+    -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
   cursor: pointer;
-  margin: 30px;
+  transition: 0.4s;
+}
+
+.artista .artista_imagem {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+}
+
+.artista .artista_imagem img {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  object-fit: cover;
+}
+
+.artista .artista_titulo {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  text-shadow: 2px 2px rgb(0, 0, 0);
+  margin-top: -80px;
+  height: 40px;
+}
+
+.artista:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
+    -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+}
+
+@media all and (max-width: 500px) {
+  .artista-list {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
 }
