@@ -188,7 +188,6 @@ table tbody tr:nth-child(odd) {
 
 .card-image {
   grid-area: image;
-  /* background: url("src/assets/random_metallica_img.jpg"); */
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   background-size: cover;

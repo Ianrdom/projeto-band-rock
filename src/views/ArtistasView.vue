@@ -5,6 +5,7 @@ export default {
   data() {
     return {
       bandas: [],
+      image: "src/assets/random_metallica_img.jpg",
     };
   },
   async created() {
@@ -13,9 +14,7 @@ export default {
   },
   computed: {
     fundo() {
-      return {
-        background: 'url("src/assets/random_metallica_img.jpg")',
-      };
+      return { "background-image": "url(" + this.image + ")" };
     },
   },
 };
@@ -24,7 +23,7 @@ export default {
 <template>
   <div class="artistas">
     <div class="card" v-for="banda of bandas" :key="banda.id">
-      <div class="card-image" :class="fundo"></div>
+      <div class="card-image" :style="fundo"></div>
       <div class="card-text">
         <h2>{{ banda.name }}</h2>
       </div>
