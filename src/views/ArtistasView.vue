@@ -1,40 +1,34 @@
 <script>
-import TesteAPI from "@/api/autores";
-const testeApi = new TesteAPI();
+import DeezerAPI from "@/api/request";
+const deezerApi = new DeezerAPI();
 export default {
   data() {
     return {
-      bandas: [
-        {
-          id: 1,
-          nome: " Metallica",
-          albuns: 10,
-        },
-        {
-          id: 2,
-          nome: " Slayer",
-          albuns: 9999,
-        },
-      ],
+      bandas: [],
     };
   },
   async created() {
-    await testeApi.testeBucas();
+    const bandas = await deezerApi.GeneroBuscas();
+    this.bandas = bandas.data;
+  },
+  computed: {
+    fundo() {
+      return {
+        background: 'url("src/assets/random_metallica_img.jpg")',
+      };
+    },
   },
 };
 </script>
 
 <template>
   <div class="artistas">
-    <template>
-      <div class="card" v-for="banda of bandas" :key="banda.id">
-        <div class="card-image"></div>
-        <div class="card-text">
-          <h2>{{ banda.nome }}</h2>
-          <p>{{ banda.albuns }}</p>
-        </div>
+    <div class="card" v-for="banda of bandas" :key="banda.id">
+      <div class="card-image" :class="fundo"></div>
+      <div class="card-text">
+        <h2>{{ banda.name }}</h2>
       </div>
-    </template>
+    </div>
   </div>
 </template>
 
