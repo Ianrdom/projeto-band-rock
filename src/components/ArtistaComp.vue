@@ -1,4 +1,6 @@
-<script>
+<!-- <script>
+import TesteAPI from "@/api/autores";
+const testeApi = new TesteAPI();
 export default {
   data() {
     return {
@@ -16,6 +18,9 @@ export default {
       ],
     };
   },
+  async created() {
+    await testeApi.testeBucas();
+  },
 };
 </script>
 
@@ -27,4 +32,4 @@ export default {
       <p>{{ banda.albuns }}</p>
     </div>
   </div>
-</template>
+</template> -->

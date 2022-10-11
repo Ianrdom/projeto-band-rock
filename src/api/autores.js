@@ -1,39 +1,19 @@
-// import axios from "axios";
-// export default class AutoresApi {
-//   async buscarTodosOsAutores() {
-//     const response = await axios.get(
-//       "https://livraria-aula-backend.herokuapp.com/Autores"
-//     );
-//     return response.data;
-//   }
+import axios from "axios";
 
-//   async buscarAutor(id) {
-//     const response = await axios.get(
-//       `https://livraria-aula-backend.herokuapp.com/Autores/${id}`
-//     );
-//     return response.data;
-//   }
-
-//   async adicionarAutor(autor) {
-//     const response = await axios.post(
-//       "https://livraria-aula-backend.herokuapp.com/Autores",
-//       autor
-//     );
-//     return response.data;
-//   }
-
-//   async excluirAutor(id) {
-//     const response = await axios.delete(
-//       `https://livraria-aula-backend.herokuapp.com/Autores/${id}`
-//     );
-//     return response.data;
-//   }
-
-//   async atualizarAutor(autor) {
-//     const response = await axios.put(
-//       `https://livraria-aula-backend.herokuapp.com/Autores/${autor.id}`,
-//       autor
-//     );
-//     return response.data;
-//   }
-// }
+export default class TesteAPI {
+  async testeBucas() {
+    // const url = "https://deezerdevs-deezer.p.rapidapi.com/artist/119";
+    // const headers = {
+    //   "X-RapidAPI-Key": "391f5b8295mshe889abbc047fad2p14b212jsnbc36461d249b",
+    //   "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+    // };
+    try {
+      const { data } = await axios.get("/artist/119");
+      console.log(data);
+      return Promise.resolve(data);
+    } catch (e) {
+      console.log(e);
+      return Promise.reject(e);
+    }
+  }
+}
