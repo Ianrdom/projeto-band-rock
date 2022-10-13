@@ -13,7 +13,7 @@ export default {
   async created() {
     const bandas = await deezerApi.GeneroBuscas();
     this.bandas = bandas.data;
-    const musicas = await deezerApi.MusicaBuscas(117);
+    const musicas = await deezerApi.MusicasBuscas(117);
     this.musicas = musicas.data;
     console.log(musicas);
   },
@@ -55,6 +55,8 @@ export default {
 .musicas-items {
   display: flex;
   padding: 10px;
+  background-color: rgb(1, 2, 17);
+  margin: 10px 0;
 }
 .musicas-items img {
   max-height: 40px;

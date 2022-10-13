@@ -14,9 +14,10 @@ body {
 main {
   color: white;
   background-color: #00002c;
-  border-bottom: 1px solid #0f0858;
-  border-top: 1px solid #0f0858;
+  border-bottom: 1px solid #0504048f;
+  border-top: 1px solid #0504048f;
   min-height: 80vh;
+  padding-bottom: 5px;
 }
 
 a {

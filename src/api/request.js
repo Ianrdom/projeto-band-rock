@@ -11,9 +11,9 @@ export default class DeezerAPI {
       return Promise.reject(e);
     }
   }
-  async ArtistaBuscas() {
+  async ArtistaBuscas(id) {
     try {
-      const { data } = await axios.get("/artist/117");
+      const { data } = await axios.get(`/artist/${id}`);
       // console.log(data);
       return Promise.resolve(data);
     } catch (e) {
@@ -31,10 +31,10 @@ export default class DeezerAPI {
       return Promise.reject(e);
     }
   }
-  async MusicaBuscas(id) {
+  async MusicasBuscas(id) {
     try {
       const { data } = await axios.get(`/artist/${id}/top`);
-      // console.log(data);
+      console.log(data);
       return Promise.resolve(data);
     } catch (e) {
       console.log(e);
