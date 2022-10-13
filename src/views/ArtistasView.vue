@@ -11,12 +11,22 @@ export default {
     const bandas = await deezerApi.GeneroBuscas();
     this.bandas = bandas.data;
   },
+  methods: {
+    mostrar(id) {
+      this.$router.push(`/artistas/${id}`);
+    },
+  },
 };
 </script>
 
 <template>
   <div class="artistas">
-    <div class="artista" v-for="banda of bandas" :key="banda.id">
+    <div
+      class="artista"
+      v-for="banda of bandas"
+      :key="banda.id"
+      @click="mostrar(banda.id)"
+    >
       <div class="artista_imagem">
         <img :src="`${banda.picture_big}`" />
       </div>

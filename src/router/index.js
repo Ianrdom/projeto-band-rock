@@ -23,6 +23,12 @@ const router = createRouter({
       name: "artistas",
       component: () => import("../views/ArtistasView.vue"),
     },
+    {
+      path: "/artistas/:id",
+      name: "artistasDetail",
+      component: () => import("../views/ArtistasDetailView.vue"),
+      props: true,
+    },
   ],
 });
 
