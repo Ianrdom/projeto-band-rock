@@ -9,6 +9,9 @@ export default {
       musicas: [],
       albums: [],
       limit: 5,
+      currentAudio: {
+        title: "ggggggg",
+      },
     };
   },
   async created() {
@@ -38,7 +41,7 @@ export default {
       <div class="artista-musicas">
         <div class="titulo-secao">Musícas de {{ artista.name }}</div>
         <div class="musicas" v-for="musica of musicas" :key="musica.id">
-          <div class="musica-detalhes">
+          <div class="musica-detalhes" @click="currentAudio = musica">
             <img :src="`${musica.album.cover_big}`" alt="Musica - track" />
             <div class="musica-titulo">
               {{ musica.title }}
@@ -65,6 +68,18 @@ export default {
         <button @click="this.limit = 5">Mostrar Menos</button>
       </div>
     </div>
+    <div class="audio">
+      <!-- {{ currentAudio.title }} -->
+    </div>
   </div>
 </template>
-<style></style>
+<style>
+.audio {
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  z-index: 1000;
+  top: 90vh;
+  background-color: #f00;
+}
+</style>

@@ -24,7 +24,7 @@ export default class DeezerAPI {
   async AlbumsBuscas(id) {
     try {
       const { data } = await axios.get(`/artist/${id}/albums`);
-      console.log(data);
+      // console.log(data);
       return Promise.resolve(data);
     } catch (e) {
       console.log(e);
@@ -34,7 +34,7 @@ export default class DeezerAPI {
   async MusicasBuscas(id) {
     try {
       const { data } = await axios.get(`/artist/${id}/top`);
-      console.log(data);
+      // console.log(data);
       return Promise.resolve(data);
     } catch (e) {
       console.log(e);

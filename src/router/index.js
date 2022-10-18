@@ -14,9 +14,10 @@ const router = createRouter({
       component: () => import("../views/DailyRockView.vue"),
     },
     {
-      path: "/resultado",
+      path: "/resultado/:search",
       name: "resultado",
       component: () => import("../views/ResultadoView.vue"),
+      props: true,
     },
     {
       path: "/artistas",

@@ -5,7 +5,12 @@ export default {
       procura: "",
     };
   },
-  // methods: procurar(){}
+  methods: {
+    procurar(search) {
+      this.$router.push(`/resultado/${search}`);
+      this.procura = "";
+    },
+  },
 };
 </script>
 
@@ -20,7 +25,12 @@ export default {
     </div>
     <div class="menu-direito">
       <span>
-        <input placeholder="Buscar " type="text" v-model="procura" />
+        <input
+          placeholder="Buscar "
+          type="text"
+          @keyup.enter="procurar(this.procura)"
+          v-model="procura"
+        />
       </span>
       <span>|</span>
       <span>Sair</span>
