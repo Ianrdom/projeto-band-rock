@@ -157,11 +157,6 @@ footer {
     flex-direction: column;
   }
 }
-/* audio::-webkit-media-controls-panel {
-  background-color: #05056e;
-  color: rgb(0, 0, 0);
-  border-radius: 0;
-} */
 
 .artista-header {
   background-color: rgba(0, 0, 0, 0.493);
