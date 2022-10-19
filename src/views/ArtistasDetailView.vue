@@ -73,13 +73,4 @@ export default {
     </div>
   </div>
 </template>
-<style>
-.audio {
-  width: 100%;
-  height: 100px;
-  position: fixed;
-  z-index: 1000;
-  top: 90vh;
-  background-color: #f00;
-}
-</style>
+<style></style>

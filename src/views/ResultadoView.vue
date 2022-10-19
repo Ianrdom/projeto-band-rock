@@ -10,19 +10,23 @@ export default {
       artistas: [],
       musicas: [],
       albums: [],
-      resultado: [],
+      resultados: [],
+      first_artist: "",
       limit: 5,
     };
   },
   async created() {
-    const resultado = await deezerBuscas.BuscarPorResultado(this.search);
-    this.resultado = resultado;
+    const resultados = await deezerBuscas.BuscarPorResultado(
+      "?q=" + this.search
+    );
+    this.resultados = resultados.data;
+
     const artistas = await deezerBuscas.BuscarPorResultado(
       "/artist?q=" + this.search
     );
-    this.artistas = artistas;
-    const musicas = await deezerApi.MusicasBuscas(this.artista[0].id);
-    this.musicas = musicas;
+    this.artistas = artistas.data;
+    const musicas = await deezerApi.MusicasBuscas(this.artistas[0].id);
+    this.musicas = musicas.data;
   },
 
   computed: {
@@ -35,9 +39,14 @@ export default {
 
 <template>
   <div class="resultado-search">
-    <div class="resultado-artista-1st">
+    <div
+      v-for="resultado of resultados"
+      :key="resultado.id"
+      class="resultado-artista-1st"
+    >
       <div class="1st-artista-image">
-        <!-- <img :src="`${artistas[0].picture_big}`" alt="" /> -->
+        <!-- <img :src="`${artistas[0].picture_big}`" /> -->
+        {{ resultado.artist.picture }}
       </div>
       <div class="1st-artista-image"></div>
     </div>
