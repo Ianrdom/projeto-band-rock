@@ -1,10 +1,11 @@
 <script>
+import PlayCircleOutline from "vue-material-design-icons/PlayCircleOutline.vue";
 import DeezerAPI from "@/api/request";
 const deezerApi = new DeezerAPI();
 import AudioPlayer from "vue3-audio-player";
 import "vue3-audio-player/dist/style.css";
 export default {
-  components: { AudioPlayer },
+  components: { AudioPlayer, PlayCircleOutline },
   props: ["id"],
   data() {
     return {
@@ -39,6 +40,10 @@ export default {
   methods: {
     alteraAudio(musica) {
       this.option.src = `${musica.preview}`;
+      (this.option.title = `${musica.title}`), `${musica.artist}`;
+      this.option.coverImage = `${musica.album.cover_big}`;
+      this.option.progressBarColor = "rgb(255, 0, 0)";
+      this.option.indicatorColor = "rgb(255,0,0)";
     },
   },
 };
@@ -54,24 +59,15 @@ export default {
       <div class="artista-musicas">
         <div class="titulo-secao">Musícas de {{ artista.name }}</div>
         <div class="musicas" v-for="musica of musicas" :key="musica.id">
-          <div class="musica-detalhes" @click="alteraAudio(musica)">
+          <div class="musica-detalhes">
+            <PlayCircleOutline
+              @click="alteraAudio(musica)"
+              :size="38"
+            ></PlayCircleOutline>
             <img :src="`${musica.album.cover_big}`" alt="Musica - track" />
             <div class="musica-titulo">
               {{ musica.title }}
             </div>
-          </div>
-          <div class="musica-audio">
-            <!-- <audio controls>
-              <source :src="`${musica.preview}`" type="audio/mpeg" />
-            </audio> -->
-            <!-- <av-circle
-              :outline-width="0"
-              :progress-width="5"
-              :outline-meter-space="5"
-              :playtime="true"
-              playtime-font="18px Monaco"
-              audio-src="`${musica.preview}`"
-            ></av-circle> -->
           </div>
         </div>
       </div>
