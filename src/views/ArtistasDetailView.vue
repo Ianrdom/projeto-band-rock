@@ -13,12 +13,9 @@ export default {
       musicas: [],
       albums: [],
       limit: 5,
-      currentAudio: {
-        title: "ggggggg",
-      },
       option: {
         src: "",
-        title: "your-audio-title",
+        title: "",
         coverImage: "",
       },
     };
@@ -40,7 +37,7 @@ export default {
   methods: {
     alteraAudio(musica) {
       this.option.src = `${musica.preview}`;
-      (this.option.title = `${musica.title}`), `${musica.artist}`;
+      this.option.title = `${musica.title} - ${musica.artist.name}`;
       this.option.coverImage = `${musica.album.cover_big}`;
       this.option.progressBarColor = "rgb(255, 0, 0)";
       this.option.indicatorColor = "rgb(255,0,0)";
