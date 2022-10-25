@@ -10,6 +10,7 @@ body {
   margin: 0 auto;
   font-weight: normal;
   height: 100vh;
+  font-family: "Signika";
 }
 
 main {
@@ -181,11 +182,12 @@ footer {
   padding: 15px;
   justify-content: space-between;
   background-color: rgb(1, 2, 17);
+  max-height: 60px;
 }
 .musica-detalhes img {
-  max-height: 40px;
-  padding-right: 5px;
-  padding-left: 5px;
+  height: 60px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 .albums-detalhes img {
   max-height: 40px;
@@ -204,7 +206,7 @@ footer {
 }
 .musica-titulo {
   font-family: "Signika";
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 audio {
   width: 1000px;
@@ -213,6 +215,8 @@ audio {
 .titulo-secao {
   font-family: "Signika";
   font-size: 5vh;
+  font-weight: 700;
+  padding-top: 15px;
 }
 .artista-conteudo {
   background-color: #00002cf5;
@@ -237,10 +241,10 @@ button {
   position: fixed;
   top: 88vh;
   background-color: rgb(0, 0, 0);
+  border-top: 1px solid rgb(54, 52, 52);
 }
 .audio__player {
   flex-direction: row !important;
-  justify-content: space-around !important;
 }
 .audio__player-play {
   margin-top: 4px;
@@ -250,4 +254,15 @@ button {
   color: white !important;
   font-weight: 500;
   font-size: 3vh !important;
+  padding-left: 5vh;
+  padding-right: 10vh;
+}
+.audio__player-spin-anim {
+  animation: none !important;
+}
+.audio__player-play img {
+  border-radius: 0 !important;
+}
+.audio__player-progress-container {
+  width: 70% !important;
 }

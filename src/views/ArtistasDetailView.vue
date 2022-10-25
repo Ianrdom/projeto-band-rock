@@ -1,11 +1,12 @@
 <script>
-import PlayCircleOutline from "vue-material-design-icons/PlayCircleOutline.vue";
+import PlayOutline from "vue-material-design-icons/PlayOutline.vue";
+import Pause from "vue-material-design-icons/Pause.vue";
 import DeezerAPI from "@/api/request";
 const deezerApi = new DeezerAPI();
 import AudioPlayer from "vue3-audio-player";
 import "vue3-audio-player/dist/style.css";
 export default {
-  components: { AudioPlayer, PlayCircleOutline },
+  components: { AudioPlayer, PlayOutline, Pause },
   props: ["id"],
   data() {
     return {
@@ -18,6 +19,7 @@ export default {
         title: "",
         coverImage: "",
       },
+      displayPlayer: false,
     };
   },
   async created() {
@@ -25,6 +27,7 @@ export default {
     this.artista = artista;
     const musicas = await deezerApi.MusicasBuscas(this.id);
     this.musicas = musicas.data;
+    this.musicas.forEach((m) => (m.isPlaying = false));
     const albums = await deezerApi.AlbumsBuscas(this.id);
     this.albums = albums.data;
   },
@@ -36,11 +39,15 @@ export default {
   },
   methods: {
     alteraAudio(musica) {
+      this.displayPlayer = true;
+      this.musicas.forEach((m) => (m.isPlaying = false));
+      this.musicas.find((m) => m === musica).isPlaying = true;
       this.option.src = `${musica.preview}`;
       this.option.title = `${musica.title} - ${musica.artist.name}`;
       this.option.coverImage = `${musica.album.cover_big}`;
-      this.option.progressBarColor = "rgb(255, 0, 0)";
-      this.option.indicatorColor = "rgb(255,0,0)";
+      this.option.progressBarColor = "rgb(167, 3, 3)";
+      this.option.indicatorColor = "rgb(167, 3, 3)";
+      console.log(this.isPlaying);
     },
   },
 };
@@ -54,13 +61,19 @@ export default {
     </div>
     <div class="artista-conteudo">
       <div class="artista-musicas">
-        <div class="titulo-secao">Musícas de {{ artista.name }}</div>
+        <div class="titulo-secao">Músicas de {{ artista.name }}</div>
         <div class="musicas" v-for="musica of musicas" :key="musica.id">
           <div class="musica-detalhes">
-            <PlayCircleOutline
+            <Pause
+              v-if="musica.isPlaying"
               @click="alteraAudio(musica)"
-              :size="38"
-            ></PlayCircleOutline>
+              :size="25"
+            ></Pause>
+            <PlayOutline
+              v-else
+              @click="alteraAudio(musica)"
+              :size="25"
+            ></PlayOutline>
             <img :src="`${musica.album.cover_big}`" alt="Musica - track" />
             <div class="musica-titulo">
               {{ musica.title }}
@@ -82,7 +95,7 @@ export default {
         <button @click="this.limit = 5">Mostrar Menos</button>
       </div>
     </div>
-    <div class="audio">
+    <div v-show="displayPlayer" class="audio">
       <AudioPlayer :option="option" />
     </div>
   </div>
