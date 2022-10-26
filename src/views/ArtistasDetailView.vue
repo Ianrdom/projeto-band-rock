@@ -38,16 +38,29 @@ export default {
     },
   },
   methods: {
-    alteraAudio(musica) {
+    pausaAudio(musica) {
+      if (musica.preview === this.option.src) {
+        const player = document.getElementsByClassName("audio__player-play")[0];
+        let clickEvent = new Event("click");
+        player.dispatchEvent(clickEvent);
+      }
+      this.musicas.find((m) => m === musica).isPlaying = false;
+    },
+    iniciaAudio(musica) {
+      if (musica.preview === this.option.src) {
+        const player = document.getElementsByClassName("audio__player-play")[0];
+        let clickEvent = new Event("click");
+        player.dispatchEvent(clickEvent);
+      }
       this.displayPlayer = true;
       this.musicas.forEach((m) => (m.isPlaying = false));
       this.musicas.find((m) => m === musica).isPlaying = true;
       this.option.src = `${musica.preview}`;
-      this.option.title = `${musica.title} - ${musica.artist.name}`;
+      this.option.title = `${musica.title}`;
       this.option.coverImage = `${musica.album.cover_big}`;
       this.option.progressBarColor = "rgb(167, 3, 3)";
       this.option.indicatorColor = "rgb(167, 3, 3)";
-      console.log(this.isPlaying);
+      console.log(musica.isPlaying);
     },
   },
 };
@@ -66,12 +79,12 @@ export default {
           <div class="musica-detalhes">
             <Pause
               v-if="musica.isPlaying"
-              @click="alteraAudio(musica)"
+              @click="pausaAudio(musica)"
               :size="25"
             ></Pause>
             <PlayOutline
               v-else
-              @click="alteraAudio(musica)"
+              @click="iniciaAudio(musica)"
               :size="25"
             ></PlayOutline>
             <img :src="`${musica.album.cover_big}`" alt="Musica - track" />
@@ -96,7 +109,7 @@ export default {
       </div>
     </div>
     <div v-show="displayPlayer" class="audio">
-      <AudioPlayer :option="option" />
+      <AudioPlayer id="audio1" :option="option" />
     </div>
   </div>
 </template>

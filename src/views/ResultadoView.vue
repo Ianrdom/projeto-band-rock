@@ -7,7 +7,6 @@ export default {
   props: ["search"],
   data() {
     return {
-      artistas: [],
       musicas: [],
       albums: [],
       resultados: [],
@@ -16,16 +15,11 @@ export default {
     };
   },
   async created() {
-    const resultados = await deezerBuscas.BuscarPorResultado(
-      "?q=" + this.search
-    );
+    const resultados = await deezerBuscas.BuscarArtista("?q=" + this.search);
     this.resultados = resultados.data;
-
-    const artistas = await deezerBuscas.BuscarPorResultado(
-      "/artist?q=" + this.search
-    );
-    this.artistas = artistas.data;
-    const musicas = await deezerApi.MusicasBuscas(this.artistas[0].id);
+    this.first_artist = this.resultados[0];
+    console.log(this.first_artist);
+    const musicas = await deezerApi.MusicasBuscas(this.first_artist.id);
     this.musicas = musicas.data;
   },
 
@@ -39,16 +33,21 @@ export default {
 
 <template>
   <div class="resultado-search">
+    <div class="1st-artista-image">
+      <img :src="`${first_artist.picture_big}`" />
+      {{ first_artist.id }}
+    </div>
     <div
-      v-for="resultado of resultados"
-      :key="resultado.id"
-      class="resultado-artista-1st"
+      class="1st-artista-container"
+      v-for="musica of musicas"
+      :key="musica.id"
     >
-      <div class="1st-artista-image">
-        <!-- <img :src="`${artistas[0].picture_big}`" /> -->
-        {{ resultado.artist.picture }}
+      <div class="1st-artist-music-image">
+        <img :src="`${musica.album.cover_small}`" />
       </div>
-      <div class="1st-artista-image"></div>
+      <div class="1st-artist-music-conteudo">
+        {{ musica.title }}
+      </div>
     </div>
   </div>
 </template>
