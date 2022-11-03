@@ -33,20 +33,28 @@ export default {
 
 <template>
   <div class="resultado-search">
-    <div class="1st-artista-image">
-      <img :src="`${first_artist.picture_big}`" />
-      {{ first_artist.id }}
-    </div>
-    <div
-      class="1st-artista-container"
-      v-for="musica of musicas"
-      :key="musica.id"
-    >
-      <div class="1st-artist-music-image">
-        <img :src="`${musica.album.cover_small}`" />
+    <div class="first-artista-container">
+      <div class="first-artista-details">
+        <div class="first-artista-image">
+          <img :src="`${first_artist.picture_medium}`" />
+        </div>
+        <div class="first-artista-name">
+          <p>{{ first_artist.name }}</p>
+        </div>
       </div>
-      <div class="1st-artist-music-conteudo">
-        {{ musica.title }}
+      <div class="first-artista-musicas">
+        <div
+          class="first-artista-musica"
+          v-for="musica of musicas"
+          :key="musica.id"
+        >
+          <div class="first-artist-musica-image">
+            <img :src="`${musica.album.cover_small}`" />
+          </div>
+          <div class="first-artist-musica-conteudo">
+            {{ musica.title }}
+          </div>
+        </div>
       </div>
     </div>
   </div>

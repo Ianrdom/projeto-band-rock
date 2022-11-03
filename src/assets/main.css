@@ -266,3 +266,26 @@ button {
 .audio__player-progress-container {
   width: 70% !important;
 }
+.first-artista-container {
+  display: flex;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.329);
+  flex-direction: column;
+}
+.first-artista-details {
+  display: flex;
+}
+.first-artista-musicas {
+  display: flex;
+}
+.first-artista-musica {
+  margin: 0 10px;
+}
+.first-artista-image img {
+  height: 20vh;
+  padding-right: 10px;
+}
+.first-artista-name {
+  font-weight: 700;
+  font-size: 5vh;
+}
