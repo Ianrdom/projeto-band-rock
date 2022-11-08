@@ -79,7 +79,7 @@ export default {
       <div class="artista-musicas">
         <div class="titulo-secao">Músicas de {{ artista.name }}</div>
         <div class="musicas" v-for="musica of musicas" :key="musica.id">
-          <div class="musica-detalhes">
+          <div class="musica-container">
             <Pause
               v-if="musica.isPlaying"
               @click="pausaAudio(musica)"

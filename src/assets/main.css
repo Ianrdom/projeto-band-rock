@@ -184,7 +184,7 @@ footer {
   background-color: rgb(1, 2, 17);
   max-height: 60px;
 }
-.musica-detalhes img {
+.musica-container img {
   height: 60px;
   padding-right: 10px;
   padding-left: 10px;
@@ -199,7 +199,7 @@ footer {
   justify-content: center;
   align-items: center;
 }
-.musica-detalhes {
+.musica-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -270,15 +270,21 @@ button {
   display: flex;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.329);
-  flex-direction: column;
+  flex-direction: row;
+  max-height: 20vh;
 }
 .first-artista-details {
   display: flex;
+  align-items: center;
 }
 .first-artista-musicas {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .first-artista-musica {
+  display: flex;
+  align-items: center;
   margin: 0 10px;
 }
 .first-artista-image img {
@@ -287,8 +293,9 @@ button {
 }
 .first-artista-name {
   font-weight: 700;
-  font-size: 5vh;
+  font-size: 8vh;
   cursor: pointer;
+  margin: 0 40px;
 }
 .album-header {
   background-color: rgba(0, 0, 0, 0.493);
@@ -303,9 +310,48 @@ button {
 }
 .album-titulo {
   font-weight: bold;
-  font-size: 10vh;
+  font-size: 7vh;
   font-family: "Signika";
 }
 .albums-titulo {
   cursor: pointer;
+}
+p {
+  margin: 0;
+}
+.titulo-secao2 {
+  font-family: "Signika";
+  font-size: 3vh;
+  font-weight: 500;
+  padding-top: 10px;
+}
+
+.artista-detalhes img {
+  max-height: 40px;
+  padding-right: 5px;
+}
+
+.artista-detalhes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.artista-resultado-titulo {
+  cursor: pointer;
+}
+.artista-resultado {
+  display: flex;
+  width: 30%;
+  margin: 5px;
+  padding: 10px;
+  justify-content: space-between;
+  background-color: rgb(1, 2, 17);
+}
+.outros-resultados {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.musica-participante {
+  font-size: 0.9rem;
 }

@@ -68,7 +68,7 @@ export default {
       <div class="album-musicas">
         <div class="titulo-secao">Músicas de {{ album.title }}</div>
         <div class="musicas" v-for="musica of musicas" :key="musica.id">
-          <div class="musica-detalhes">
+          <div class="musica-container">
             <Pause
               v-if="musica.isPlaying"
               @click="pausaAudio(musica)"
@@ -80,8 +80,11 @@ export default {
               :size="25"
             ></PlayOutline>
             <img :src="`${album.cover_big}`" alt="Musica - track" />
-            <div class="musica-titulo">
-              {{ musica.title }}
+            <div class="musica-detalhes">
+              <div class="musica-titulo">
+                {{ musica.title }}
+              </div>
+              <div class="musica-participante">{{ musica.artist.name }}</div>
             </div>
           </div>
         </div>

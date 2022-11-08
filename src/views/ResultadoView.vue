@@ -8,26 +8,19 @@ export default {
   data() {
     return {
       musicas: [],
-      albums: [],
       resultados: [],
-      first_artist: "",
-      limit: 5,
+      first_artist: [],
     };
   },
   async created() {
     const resultados = await deezerBuscas.BuscarArtista("?q=" + this.search);
     this.resultados = resultados.data;
-    this.first_artist = this.resultados[0];
+    this.first_artist = this.resultados.shift();
     console.log(this.first_artist);
     const musicas = await deezerApi.MusicasBuscas(this.first_artist.id);
     this.musicas = musicas.data;
   },
 
-  computed: {
-    AlbumsLimitados() {
-      return this.limit ? this.albums.slice(0, this.limit) : this.albums;
-    },
-  },
   methods: {
     mostrar_artista(id) {
       this.$router.push(`/artistas/${id}`);
@@ -56,11 +49,32 @@ export default {
           v-for="musica of musicas"
           :key="musica.id"
         >
-          <div class="first-artist-musica-image">
+          <div class="first-artista-musica-image">
             <img :src="`${musica.album.cover_small}`" />
           </div>
-          <div class="first-artist-musica-conteudo">
+          <div class="first-artista-musica-conteudo">
             {{ musica.title }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="outros-resultados-container">
+      <div class="titulo-secao2">Outros Resultados</div>
+      <div class="outros-resultados">
+        <div
+          class="artista-resultado"
+          v-for="artista of resultados"
+          :key="artista.id"
+        >
+          <div class="artista-detalhes">
+            <img :src="`${artista.picture}`" alt="Artista - Resultado" />
+            <div
+              class="artista-resultado-titulo"
+              @click="mostrar_artista(artista.id)"
+            >
+              {{ artista.name }}
+            </div>
           </div>
         </div>
       </div>
