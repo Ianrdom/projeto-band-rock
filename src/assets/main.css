@@ -288,4 +288,24 @@ button {
 .first-artista-name {
   font-weight: 700;
   font-size: 5vh;
+  cursor: pointer;
+}
+.album-header {
+  background-color: rgba(0, 0, 0, 0.493);
+  display: flex;
+  min-height: 20vh;
+  align-items: center;
+  border-bottom: 1px solid #0502028f;
+}
+.album-header img {
+  max-height: 19vh;
+  padding: 0 3vh;
+}
+.album-titulo {
+  font-weight: bold;
+  font-size: 10vh;
+  font-family: "Signika";
+}
+.albums-titulo {
+  cursor: pointer;
 }

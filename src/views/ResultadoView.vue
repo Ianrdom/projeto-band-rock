@@ -28,6 +28,11 @@ export default {
       return this.limit ? this.albums.slice(0, this.limit) : this.albums;
     },
   },
+  methods: {
+    mostrar_artista(id) {
+      this.$router.push(`/artistas/${id}`);
+    },
+  },
 };
 </script>
 
@@ -38,7 +43,10 @@ export default {
         <div class="first-artista-image">
           <img :src="`${first_artist.picture_medium}`" />
         </div>
-        <div class="first-artista-name">
+        <div
+          class="first-artista-name"
+          @click="mostrar_artista(this.first_artist.id)"
+        >
           <p>{{ first_artist.name }}</p>
         </div>
       </div>

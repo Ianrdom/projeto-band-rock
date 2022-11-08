@@ -10,10 +10,8 @@ export default {
   props: ["id"],
   data() {
     return {
-      artista: [],
+      album: [],
       musicas: [],
-      albums: [],
-      limit: 5,
       option: {
         src: "",
         title: "",
@@ -23,19 +21,10 @@ export default {
     };
   },
   async created() {
-    const artista = await deezerApi.ArtistaBuscas(this.id);
-    this.artista = artista;
-    const musicas = await deezerApi.MusicasBuscas(this.id);
+    const album = await deezerApi.AlbumBuscas(this.id);
+    this.album = album;
+    const musicas = await deezerApi.Album_MusicasBuscas(this.album.id);
     this.musicas = musicas.data;
-    this.musicas.forEach((m) => (m.isPlaying = false));
-    const albums = await deezerApi.Albums_ArtistaBuscas(this.id);
-    this.albums = albums.data;
-  },
-
-  computed: {
-    AlbumsLimitados() {
-      return this.limit ? this.albums.slice(0, this.limit) : this.albums;
-    },
   },
   methods: {
     mostrar(id) {
@@ -60,7 +49,7 @@ export default {
       this.musicas.find((m) => m === musica).isPlaying = true;
       this.option.src = `${musica.preview}`;
       this.option.title = `${musica.title}`;
-      this.option.coverImage = `${musica.album.cover_big}`;
+      this.option.coverImage = `${this.album.cover_big}`;
       this.option.progressBarColor = "rgb(167, 3, 3)";
       this.option.indicatorColor = "rgb(167, 3, 3)";
       console.log(musica.isPlaying);
@@ -70,14 +59,14 @@ export default {
 </script>
 
 <template>
-  <div class="artista-profile">
-    <div class="artista-header">
-      <img :src="`${artista.picture_big}`" />
-      <div class="artista-titulo">{{ artista.name }}</div>
+  <div class="album-container">
+    <div class="album-header">
+      <img :src="`${album.cover_big}`" />
+      <div class="album-titulo">{{ album.title }}</div>
     </div>
-    <div class="artista-conteudo">
-      <div class="artista-musicas">
-        <div class="titulo-secao">Músicas de {{ artista.name }}</div>
+    <div class="album-conteudo">
+      <div class="album-musicas">
+        <div class="titulo-secao">Músicas de {{ album.title }}</div>
         <div class="musicas" v-for="musica of musicas" :key="musica.id">
           <div class="musica-detalhes">
             <Pause
@@ -90,25 +79,12 @@ export default {
               @click="iniciaAudio(musica)"
               :size="25"
             ></PlayOutline>
-            <img :src="`${musica.album.cover_big}`" alt="Musica - track" />
+            <img :src="`${album.cover_big}`" alt="Musica - track" />
             <div class="musica-titulo">
               {{ musica.title }}
             </div>
           </div>
         </div>
-      </div>
-      <div class="artista-albums">
-        <div class="titulo-secao">Albums de {{ artista.name }}</div>
-        <div class="albums" v-for="album of AlbumsLimitados" :key="album.id">
-          <div class="albums-detalhes">
-            <img :src="`${album.cover_big}`" alt="Album - Imagem" />
-            <div class="albums-titulo" @click="mostrar(album.id)">
-              {{ album.title }}
-            </div>
-          </div>
-        </div>
-        <button @click="this.limit = null">Mostrar Mais</button>
-        <button @click="this.limit = 5">Mostrar Menos</button>
       </div>
     </div>
     <div v-show="displayPlayer" class="audio">
@@ -116,4 +92,3 @@ export default {
     </div>
   </div>
 </template>
-<style></style>
