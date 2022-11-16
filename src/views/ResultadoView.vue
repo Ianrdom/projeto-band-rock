@@ -13,17 +13,25 @@ export default {
     };
   },
   async created() {
-    const resultados = await deezerBuscas.BuscarArtista("?q=" + this.search);
-    this.resultados = resultados.data;
-    this.first_artist = this.resultados.shift();
-    console.log(this.first_artist);
-    const musicas = await deezerApi.MusicasBuscas(this.first_artist.id);
-    this.musicas = musicas.data;
+    await this.atualizar();
   },
 
   methods: {
     mostrar_artista(id) {
       this.$router.push(`/artistas/${id}`);
+    },
+    async atualizar() {
+      const resultados = await deezerBuscas.BuscarArtista("?q=" + this.search);
+      this.resultados = resultados.data;
+      this.first_artist = this.resultados.shift();
+      console.log(this.first_artist);
+      const musicas = await deezerApi.MusicasBuscas(this.first_artist.id);
+      this.musicas = musicas.data;
+    },
+  },
+  watch: {
+    async search() {
+      await this.atualizar();
     },
   },
 };

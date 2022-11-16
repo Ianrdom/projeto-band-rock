@@ -13,13 +13,21 @@ export default {
   async created() {
     const bandas = await deezerApi.GeneroBuscas();
     this.bandas = bandas.data;
-    const musicas = await deezerApi.MusicasBuscas(117);
+    const musicas = await deezerApi.MusicasBuscas(119);
     this.musicas = musicas.data;
     console.log(musicas);
   },
   computed: {
     artistasLimitados() {
       return this.limit ? this.bandas.slice(0, this.limit) : this.object;
+    },
+  },
+  methods: {
+    mostrar_album(id) {
+      this.$router.push(`/album/${id}`);
+    },
+    mostrar_artista(id) {
+      this.$router.push(`/artistas/${id}`);
     },
   },
 };
@@ -31,7 +39,17 @@ export default {
       <h1>Música que você pode gostar</h1>
       <div class="musicas-items" v-for="musica of musicas" :key="musica.id">
         <img :src="`${musica.album.cover}`" />
-        <div>{{ musica.title }}</div>
+        <div class="musica-details-daily">
+          <div
+            class="album-nome-musica"
+            @click="mostrar_album(musica.album.id)"
+          >
+            {{ musica.title }}
+          </div>
+          <div class="artista-nomes" @click="mostrar_artista(musica.artist.id)">
+            {{ musica.artist.name }}
+          </div>
+        </div>
       </div>
     </div>
     <div class="daily-items">
@@ -59,7 +77,8 @@ export default {
   margin: 10px 0;
 }
 .musicas-items img {
-  max-height: 40px;
+  max-height: 50px;
+  padding: 0 10px;
 }
 .artistas-items {
   display: flex;
@@ -68,5 +87,20 @@ export default {
 
 .artistas-items img {
   max-height: 60px;
+}
+.musica-details-daily {
+  display: flex;
+  flex-direction: column;
+}
+.musicas-items {
+  font-size: 18px;
+}
+.artista-nomes {
+  font-size: 14px;
+  cursor: pointer;
+  color: gray;
+}
+.album-nome-musica {
+  cursor: pointer;
 }
 </style>
