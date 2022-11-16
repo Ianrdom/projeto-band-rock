@@ -3,10 +3,14 @@ import DeezerAPI from "@/api/request";
 const deezerApi = new DeezerAPI();
 import PlayOutline from "vue-material-design-icons/PlayOutline.vue";
 import Pause from "vue-material-design-icons/Pause.vue";
-import AudioPlayer from "vue3-audio-player";
-import "vue3-audio-player/dist/style.css";
+// import AudioPlayer from "vue3-audio-player";
+// import "vue3-audio-player/dist/style.css";
+
+import { mapStores, mapActions, mapState } from "pinia";
+import { useAudioStore } from "@/stores/audio";
+
 export default {
-  components: { AudioPlayer, PlayOutline, Pause },
+  components: { PlayOutline, Pause },
   props: ["id"],
   data() {
     return {
@@ -14,11 +18,6 @@ export default {
       musicas: [],
       albums: [],
       limit: 5,
-      option: {
-        src: "",
-        title: "",
-        coverImage: "",
-      },
       displayPlayer: false,
     };
   },
@@ -33,11 +32,14 @@ export default {
   },
 
   computed: {
+    ...mapStores(useAudioStore),
+    ...mapState(useAudioStore, ["option"]),
     AlbumsLimitados() {
       return this.limit ? this.albums.slice(0, this.limit) : this.albums;
     },
   },
   methods: {
+    ...mapActions(useAudioStore, ["setOption"]),
     mostrar(id) {
       this.$router.push(`/album/${id}`);
     },
@@ -58,11 +60,14 @@ export default {
       this.displayPlayer = true;
       this.musicas.forEach((m) => (m.isPlaying = false));
       this.musicas.find((m) => m === musica).isPlaying = true;
-      this.option.src = `${musica.preview}`;
-      this.option.title = `${musica.title}`;
-      this.option.coverImage = `${musica.album.cover_big}`;
-      this.option.progressBarColor = "rgb(167, 3, 3)";
-      this.option.indicatorColor = "rgb(167, 3, 3)";
+      const option = {
+        src: `${musica.preview}`,
+        title: `${musica.title}`,
+        coverImage: `${musica.album.cover_big}`,
+        progressBarColor: "rgb(167, 3, 3)",
+        indicatorColor: "rgb(167, 3, 3)",
+      };
+      this.setOption(option);
       console.log(musica.isPlaying);
     },
   },
@@ -111,9 +116,8 @@ export default {
         <button @click="this.limit = 5">Mostrar Menos</button>
       </div>
     </div>
-    <div v-show="displayPlayer" class="audio">
-      <AudioPlayer id="audio1" :option="option" />
-    </div>
   </div>
+  <!-- <div v-show="displayPlayer" class="audio">
+    <AudioPlayer id="audio1" :option="option" />
+  </div> -->
 </template>
-<style></style>
