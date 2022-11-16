@@ -9,6 +9,13 @@ import { useAudioStore } from "@/stores/audio";
 
 export default {
   components: { AudioPlayer, HeaderComp, FooterComp },
+  methods: {
+    atualizar() {
+      const player = document.getElementsByClassName("audio__player-play")[0];
+      let clickEvent = new Event("click");
+      player.dispatchEvent(clickEvent);
+    },
+  },
   computed: {
     ...mapStores(useAudioStore),
     ...mapState(useAudioStore, ["displayPlayer", "option"]),
@@ -18,11 +25,11 @@ export default {
       };
     },
   },
-  // watch: {
-  //   async displayPlayer() {
-  //     await this.atualizar();
-  //   },
-  // },
+  watch: {
+    async displayPlayer() {
+      await this.atualizar();
+    },
+  },
 };
 </script>
 
@@ -34,7 +41,7 @@ export default {
   </main>
   <FooterComp />
   <!-- </div> -->
-  <div v-if="displayPlayer" class="audio">
+  <div v-show="displayPlayer" class="audio">
     <AudioPlayer id="audio1" :option="option" />
   </div>
 </template>

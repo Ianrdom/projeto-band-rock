@@ -3,20 +3,15 @@ import DeezerAPI from "@/api/request";
 const deezerApi = new DeezerAPI();
 import PlayOutline from "vue-material-design-icons/PlayOutline.vue";
 import Pause from "vue-material-design-icons/Pause.vue";
-import AudioPlayer from "vue3-audio-player";
-import "vue3-audio-player/dist/style.css";
+import { mapStores, mapActions, mapState } from "pinia";
+import { useAudioStore } from "@/stores/audio";
 export default {
-  components: { AudioPlayer, PlayOutline, Pause },
+  components: { PlayOutline, Pause },
   props: ["id"],
   data() {
     return {
       album: [],
       musicas: [],
-      option: {
-        src: "",
-        title: "",
-        coverImage: "",
-      },
       displayPlayer: false,
     };
   },
@@ -26,7 +21,12 @@ export default {
     const musicas = await deezerApi.Album_MusicasBuscas(this.album.id);
     this.musicas = musicas.data;
   },
+  computed: {
+    ...mapStores(useAudioStore),
+    ...mapState(useAudioStore, ["option"]),
+  },
   methods: {
+    ...mapActions(useAudioStore, ["setOption"]),
     mostrar(id) {
       this.$router.push(`/album/${id}`);
     },
@@ -47,11 +47,14 @@ export default {
       this.displayPlayer = true;
       this.musicas.forEach((m) => (m.isPlaying = false));
       this.musicas.find((m) => m === musica).isPlaying = true;
-      this.option.src = `${musica.preview}`;
-      this.option.title = `${musica.title}`;
-      this.option.coverImage = `${this.album.cover_big}`;
-      this.option.progressBarColor = "rgb(167, 3, 3)";
-      this.option.indicatorColor = "rgb(167, 3, 3)";
+      const option = {
+        src: `${musica.preview}`,
+        title: `${musica.title}`,
+        coverImage: `${this.album.cover_big}`,
+        progressBarColor: "rgb(167, 3, 3)",
+        indicatorColor: "rgb(167, 3, 3)",
+      };
+      this.setOption(option);
       console.log(musica.isPlaying);
     },
   },
@@ -90,8 +93,8 @@ export default {
         </div>
       </div>
     </div>
-    <div v-show="displayPlayer" class="audio">
+    <!-- <div v-show="displayPlayer" class="audio">
       <AudioPlayer id="audio1" :option="option" />
-    </div>
+    </div> -->
   </div>
 </template>
