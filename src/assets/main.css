@@ -19,6 +19,7 @@ main {
   border-bottom: 1px solid #0504048f;
   border-top: 1px solid #0504048f;
   min-height: 80vh;
+  /* flex: 1; */
   padding-bottom: 5px;
 }
 
@@ -236,12 +237,15 @@ button {
 }
 .audio {
   width: 100%;
-  min-height: 100px;
+  /* min-height: 100px; */
+  height: 120px;
   position: fixed;
-  top: 88vh;
+  /* top: 88vh; */
   background-color: rgb(0, 0, 0);
   border-top: 1px solid rgb(54, 52, 52);
   color: white;
+  bottom: 0;
+  /* margin-bottom: 0; */
 }
 .audio__player {
   flex-direction: row !important;

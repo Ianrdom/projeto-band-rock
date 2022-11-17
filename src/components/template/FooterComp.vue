@@ -1,3 +1,3 @@
 <template>
-  <footer>Rodapé ( colocar mais coisa aqui depois)</footer>
+  <footer>Deezer API/ All Rights Reserved 2022</footer>
 </template>

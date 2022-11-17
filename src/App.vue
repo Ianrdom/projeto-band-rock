@@ -19,11 +19,12 @@ export default {
   computed: {
     ...mapStores(useAudioStore),
     ...mapState(useAudioStore, ["displayPlayer", "option"]),
-    classObject() {
-      return {
-        menor: this.displayPlayer,
-      };
-    },
+    // classObject() {
+    //   return {
+    //     conteudo: this.displayPlayer,
+    //     conteudo1: !this.displayPlayer,
+    //   };
+    // },
   },
   watch: {
     async displayPlayer() {
@@ -35,20 +36,33 @@ export default {
 
 <template>
   <!-- <div :class="classObject"> -->
-  <HeaderComp />
-  <main>
-    <RouterView />
-  </main>
-  <FooterComp />
-  <!-- </div> -->
-  <div v-show="displayPlayer" class="audio">
-    <AudioPlayer id="audio1" :option="option" />
+  <div class="conteudo">
+    <HeaderComp />
+    <main>
+      <RouterView />
+    </main>
+    <FooterComp />
+    <!-- </div> -->
+    <div v-show="displayPlayer" class="espaco"></div>
+    <div v-show="displayPlayer" class="audio">
+      <AudioPlayer id="audio1" :option="option" />
+    </div>
   </div>
 </template>
 
 <style scoped>
-.menor {
-  /* margin-bottom: 100px; */
+.espaco {
+  height: 120px;
+  min-height: 120px;
+  background-color: rgb(255, 255, 255);
+}
+/* .conteudo1 {
+  height: 100vh;
+  width: 100%;
+} */
+.conteudo {
+  /* min-height: 100vh; */
+  height: 100vh;
+  width: 100%;
 }
 </style>
-<!-- WATCH NO PLAY, SE MUDAR DAR PLAY NELE -->
