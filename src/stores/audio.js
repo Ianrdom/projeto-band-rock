@@ -1,14 +1,21 @@
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 import { defineStore } from "pinia";
 
 export const useAudioStore = defineStore("audio", () => {
   const displayPlayer = ref(false);
-  const option = reactive({});
+  const option = ref({});
+  const musicas = ref({});
 
   function setOption(options) {
     displayPlayer.value = true;
-    Object.assign(option, options);
+    option.value = options;
+    // Object.assign(option, options);
   }
 
-  return { displayPlayer, option, setOption };
+  function closeAudio() {
+    displayPlayer.value = false;
+    option.value = {};
+  }
+
+  return { displayPlayer, option, musicas, setOption, closeAudio };
 });

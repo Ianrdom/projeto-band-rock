@@ -3,8 +3,6 @@ import DeezerAPI from "@/api/request";
 const deezerApi = new DeezerAPI();
 import PlayOutline from "vue-material-design-icons/PlayOutline.vue";
 import Pause from "vue-material-design-icons/Pause.vue";
-// import AudioPlayer from "vue3-audio-player";
-// import "vue3-audio-player/dist/style.css";
 
 import { mapStores, mapActions, mapState } from "pinia";
 import { useAudioStore } from "@/stores/audio";
