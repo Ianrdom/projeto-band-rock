@@ -266,6 +266,15 @@ button {
 }
 .audio__player-play img {
   border-radius: 0 !important;
+  height: 120px !important ;
+  width: 120px !important;
+}
+.audio__player-play {
+  margin-top: 0 !important;
+}
+.audio__player-play-icon img {
+  height: 2rem !important ;
+  width: 2rem !important;
 }
 .audio__player-progress-container {
   width: 70% !important;

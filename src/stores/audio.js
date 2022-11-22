@@ -11,11 +11,33 @@ export const useAudioStore = defineStore("audio", () => {
     option.value = options;
     // Object.assign(option, options);
   }
+  function setMusica(musicas_novas) {
+    musicas.value = musicas_novas;
+    musicas.value.forEach((m) => (m.isPlaying = false));
+  }
+
+  function pausa_icon_musica(musica) {
+    musicas.value.find((m) => m === musica).isPlaying = false;
+  }
+  function inicia_icon_musica(musica) {
+    musicas.value.forEach((m) => (m.isPlaying = false));
+    musicas.value.find((m) => m === musica).isPlaying = true;
+  }
 
   function closeAudio() {
     displayPlayer.value = false;
     option.value = {};
+    musicas.value.forEach((m) => (m.isPlaying = false));
   }
 
-  return { displayPlayer, option, musicas, setOption, closeAudio };
+  return {
+    displayPlayer,
+    option,
+    musicas,
+    setMusica,
+    setOption,
+    pausa_icon_musica,
+    inicia_icon_musica,
+    closeAudio,
+  };
 });

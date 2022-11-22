@@ -13,7 +13,6 @@ export default {
   data() {
     return {
       artista: [],
-      musicas: [],
       albums: [],
       limit: 5,
       displayPlayer: false,
@@ -23,21 +22,24 @@ export default {
     const artista = await deezerApi.ArtistaBuscas(this.id);
     this.artista = artista;
     const musicas = await deezerApi.MusicasBuscas(this.id);
-    this.musicas = musicas.data;
-    this.musicas.forEach((m) => (m.isPlaying = false));
+    this.setMusica(musicas.data);
     const albums = await deezerApi.Albums_ArtistaBuscas(this.id);
     this.albums = albums.data;
   },
-
   computed: {
     ...mapStores(useAudioStore),
-    ...mapState(useAudioStore, ["option"]),
+    ...mapState(useAudioStore, ["option", "musicas"]),
     AlbumsLimitados() {
       return this.limit ? this.albums.slice(0, this.limit) : this.albums;
     },
   },
   methods: {
-    ...mapActions(useAudioStore, ["setOption"]),
+    ...mapActions(useAudioStore, [
+      "setOption",
+      "setMusica",
+      "inicia_icon_musica",
+      "pausa_icon_musica",
+    ]),
     mostrar(id) {
       this.$router.push(`/album/${id}`);
     },
@@ -47,7 +49,7 @@ export default {
         let clickEvent = new Event("click");
         player.dispatchEvent(clickEvent);
       }
-      this.musicas.find((m) => m === musica).isPlaying = false;
+      this.pausa_icon_musica(musica);
     },
     iniciaAudio(musica) {
       if (musica.preview === this.option.src) {
@@ -56,8 +58,7 @@ export default {
         player.dispatchEvent(clickEvent);
       }
       this.displayPlayer = true;
-      this.musicas.forEach((m) => (m.isPlaying = false));
-      this.musicas.find((m) => m === musica).isPlaying = true;
+      this.inicia_icon_musica(musica);
       const option = {
         src: `${musica.preview}`,
         title: `${musica.title}`,
@@ -115,7 +116,4 @@ export default {
       </div>
     </div>
   </div>
-  <!-- <div v-show="displayPlayer" class="audio">
-    <AudioPlayer id="audio1" :option="option" />
-  </div> -->
 </template>

@@ -5,13 +5,13 @@ import PlayOutline from "vue-material-design-icons/PlayOutline.vue";
 import Pause from "vue-material-design-icons/Pause.vue";
 import { mapStores, mapActions, mapState } from "pinia";
 import { useAudioStore } from "@/stores/audio";
+
 export default {
   components: { PlayOutline, Pause },
   props: ["id"],
   data() {
     return {
       album: [],
-      musicas: [],
       displayPlayer: false,
     };
   },
@@ -19,16 +19,21 @@ export default {
     const album = await deezerApi.AlbumBuscas(this.id);
     this.album = album;
     const musicas = await deezerApi.Album_MusicasBuscas(this.album.id);
-    this.musicas = musicas.data;
+    this.setMusica(musicas.data);
   },
   computed: {
     ...mapStores(useAudioStore),
-    ...mapState(useAudioStore, ["option"]),
+    ...mapState(useAudioStore, ["option", "musicas"]),
   },
   methods: {
-    ...mapActions(useAudioStore, ["setOption"]),
-    mostrar(id) {
-      this.$router.push(`/album/${id}`);
+    ...mapActions(useAudioStore, [
+      "setOption",
+      "setMusica",
+      "inicia_icon_musica",
+      "pausa_icon_musica",
+    ]),
+    mostrar_artista(id) {
+      this.$router.push(`/artistas/${id}`);
     },
     pausaAudio(musica) {
       if (musica.preview === this.option.src) {
@@ -36,7 +41,7 @@ export default {
         let clickEvent = new Event("click");
         player.dispatchEvent(clickEvent);
       }
-      this.musicas.find((m) => m === musica).isPlaying = false;
+      this.pausa_icon_musica(musica);
     },
     iniciaAudio(musica) {
       if (musica.preview === this.option.src) {
@@ -45,8 +50,7 @@ export default {
         player.dispatchEvent(clickEvent);
       }
       this.displayPlayer = true;
-      this.musicas.forEach((m) => (m.isPlaying = false));
-      this.musicas.find((m) => m === musica).isPlaying = true;
+      this.inicia_icon_musica(musica);
       const option = {
         src: `${musica.preview}`,
         title: `${musica.title}`,
@@ -87,14 +91,21 @@ export default {
               <div class="musica-titulo">
                 {{ musica.title }}
               </div>
-              <div class="musica-participante">{{ musica.artist.name }}</div>
+              <div
+                class="musica-participante"
+                @click="mostrar_artista(musica.artist.id)"
+              >
+                {{ musica.artist.name }}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div v-show="displayPlayer" class="audio">
-      <AudioPlayer id="audio1" :option="option" />
-    </div> -->
   </div>
 </template>
+<style>
+.musica-participante {
+  cursor: pointer;
+}
+</style>
