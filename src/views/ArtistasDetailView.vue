@@ -33,12 +33,17 @@ export default {
       return this.limit ? this.albums.slice(0, this.limit) : this.albums;
     },
   },
+  beforeUnmount() {
+    this.clear();
+  },
   methods: {
     ...mapActions(useAudioStore, [
       "setOption",
       "setMusica",
       "inicia_icon_musica",
       "pausa_icon_musica",
+      "clear",
+      "AddRecentes",
     ]),
     mostrar(id) {
       this.$router.push(`/album/${id}`);
@@ -66,6 +71,7 @@ export default {
         progressBarColor: "rgb(167, 3, 3)",
         indicatorColor: "rgb(167, 3, 3)",
       };
+      this.AddRecentes(musica);
       this.setOption(option);
       console.log(musica.isPlaying);
     },

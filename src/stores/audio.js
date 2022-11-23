@@ -5,7 +5,14 @@ export const useAudioStore = defineStore("audio", () => {
   const displayPlayer = ref(false);
   const option = ref({});
   const musicas = ref({});
+  const musicasrecentes = ref({});
 
+  function clear() {
+    musicas.value = {};
+  }
+  function AddRecentes(musica) {
+    musicasrecentes.value = musicasrecentes.value + musica;
+  }
   function setOption(options) {
     displayPlayer.value = true;
     option.value = options;
@@ -39,5 +46,7 @@ export const useAudioStore = defineStore("audio", () => {
     pausa_icon_musica,
     inicia_icon_musica,
     closeAudio,
+    clear,
+    AddRecentes,
   };
 });
