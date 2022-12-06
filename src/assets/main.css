@@ -379,7 +379,7 @@ p {
 }
 .musica-recente {
   display: flex;
-  width: 40%;
+  width: 30%;
   margin: 10px 0;
   padding: 15px;
   justify-content: space-between;
@@ -398,4 +398,27 @@ p {
   gap: 12px;
   flex-wrap: wrap;
   flex-direction: row;
+}
+.limpar-musicas{
+  display: flex;
+  width: 19.5vh;
+  font-size: 1rem;
+  margin: 10px;
+}
+.botao-limpa{
+  display: flex;
+  justify-content: center;
+}
+.musica-recente-artista-detalhes{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.musica-recente-artista{
+  font-size:0.8rem ;
+  cursor: pointer;
+}
+.musica-recente-titulo{
+  cursor: pointer;
 }

@@ -39,7 +39,7 @@ export const useAudioStore = defineStore("audio", () => {
     }
   }
   function limparMusicasRecentes() {
-    musicasrecentes.value = null;
+    musicasrecentes.value = [];
   }
 
   return {

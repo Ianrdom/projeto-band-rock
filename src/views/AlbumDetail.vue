@@ -25,6 +25,9 @@ export default {
     ...mapStores(useAudioStore),
     ...mapState(useAudioStore, ["option", "musicas"]),
   },
+  beforeUnmount() {
+    this.clear();
+  },
   methods: {
     ...mapActions(useAudioStore, [
       "setOption",
@@ -32,7 +35,6 @@ export default {
       "inicia_icon_musica",
       "pausa_icon_musica",
       "clear",
-      "AddRecentes",
     ]),
     mostrar_artista(id) {
       this.$router.push(`/artistas/${id}`);
@@ -60,13 +62,9 @@ export default {
         progressBarColor: "rgb(167, 3, 3)",
         indicatorColor: "rgb(167, 3, 3)",
       };
-      this.AddRecentes(musica);
       this.setOption(option);
       console.log(musica.isPlaying);
     },
-  },
-  beforeUnmount() {
-    this.clear();
   },
 };
 </script>
@@ -81,7 +79,7 @@ export default {
       <div class="album-musicas">
         <div class="titulo-secao">Músicas de {{ album.title }}</div>
         <div class="musicas" v-for="musica of musicas" :key="musica.id">
-          <div class="musica-container">
+          <div class="musica-content">
             <Pause
               v-if="musica.isPlaying"
               @click="pausaAudio(musica)"
