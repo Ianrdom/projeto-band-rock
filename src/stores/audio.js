@@ -5,13 +5,13 @@ export const useAudioStore = defineStore("audio", () => {
   const displayPlayer = ref(false);
   const option = ref({});
   const musicas = ref({});
-  const musicasrecentes = ref({});
+  const musicasrecentes = ref([]);
 
   function clear() {
-    musicas.value = {};
+    musicas.value = null;
   }
   function AddRecentes(musica) {
-    musicasrecentes.value = musicasrecentes.value + musica;
+    musicasrecentes.value.push(musica);
   }
   function setOption(options) {
     displayPlayer.value = true;
@@ -34,7 +34,12 @@ export const useAudioStore = defineStore("audio", () => {
   function closeAudio() {
     displayPlayer.value = false;
     option.value = {};
-    musicas.value.forEach((m) => (m.isPlaying = false));
+    if (musicas.value != null) {
+      musicas.value.forEach((m) => (m.isPlaying = false));
+    }
+  }
+  function limparMusicasRecentes() {
+    musicasrecentes.value = null;
   }
 
   return {
@@ -48,5 +53,7 @@ export const useAudioStore = defineStore("audio", () => {
     closeAudio,
     clear,
     AddRecentes,
+    musicasrecentes,
+    limparMusicasRecentes,
   };
 });

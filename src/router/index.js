@@ -27,13 +27,13 @@ const router = createRouter({
     {
       path: "/artistas/:id",
       name: "artistasDetail",
-      component: () => import("../views/ArtistasDetailView.vue"),
+      component: () => import("../views/ArtistasDetail.vue"),
       props: true,
     },
     {
       path: "/album/:id",
       name: "albumDetail",
-      component: () => import("../views/AlbumDetailView.vue"),
+      component: () => import("../views/AlbumDetail.vue"),
       props: true,
     },
   ],

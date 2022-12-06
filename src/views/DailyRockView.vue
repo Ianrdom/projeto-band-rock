@@ -38,7 +38,7 @@ export default {
     <div class="daily-items">
       <h1>Música que você pode gostar</h1>
       <div class="musicas-items" v-for="musica of musicas" :key="musica.id">
-        <img :src="`${musica.album.cover}`" />
+        <img :src="`${musica.album.cover_medium}`" />
         <div class="musica-details-daily">
           <div
             class="album-nome-musica"
@@ -59,7 +59,7 @@ export default {
         v-for="banda of artistasLimitados"
         :key="banda.id"
       >
-        <img :src="`${banda.picture}`" />
+        <img :src="`${banda.picture_medium}`" />
         <div>{{ banda.name }}</div>
       </div>
     </div>
