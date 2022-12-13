@@ -2,12 +2,13 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import DeezerAPI from "@/api/request";
 const deezerApi = new DeezerAPI();
+import { useStorage } from "@vueuse/core";
 
 export const useAudioStore = defineStore("audio", () => {
   const displayPlayer = ref(false);
   const option = ref({});
   const musicas = ref({});
-  const musicasrecentes = ref([]);
+  const musicasrecentes = useStorage("musicasrecentes", []);
 
   function clear() {
     musicas.value = null;
