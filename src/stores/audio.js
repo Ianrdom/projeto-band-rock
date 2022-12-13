@@ -1,5 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import DeezerAPI from "@/api/request";
+const deezerApi = new DeezerAPI();
 
 export const useAudioStore = defineStore("audio", () => {
   const displayPlayer = ref(false);
@@ -10,7 +12,11 @@ export const useAudioStore = defineStore("audio", () => {
   function clear() {
     musicas.value = null;
   }
-  function AddRecentes(musica) {
+  async function AddMusicasDeAlbumsRecentes(id) {
+    const musica_de_album = await deezerApi.MusicaEspecificaBusca(id);
+    musicasrecentes.value.push(musica_de_album);
+  }
+  function AddMusicasDeArtistasRecentes(musica) {
     musicasrecentes.value.push(musica);
   }
   function setOption(options) {
@@ -52,8 +58,9 @@ export const useAudioStore = defineStore("audio", () => {
     inicia_icon_musica,
     closeAudio,
     clear,
-    AddRecentes,
+    AddMusicasDeArtistasRecentes,
     musicasrecentes,
+    AddMusicasDeAlbumsRecentes,
     limparMusicasRecentes,
   };
 });

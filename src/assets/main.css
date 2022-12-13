@@ -19,7 +19,6 @@ main {
   border-bottom: 1px solid #0504048f;
   border-top: 1px solid #0504048f;
   min-height: 80vh;
-  /* flex: 1; */
   padding-bottom: 5px;
 }
 
@@ -70,7 +69,6 @@ footer {
 .daily-filtro {
   display: flex;
   text-align: center;
-  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -78,11 +76,13 @@ footer {
 .daily-items {
   align-self: center;
   width: 90%;
-  background-color: #ffffff09;
+  border-radius: 20px;
+  background-color: #ffffff13;
   margin: 20px 0;
   min-height: 200px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .caminho-diario {
@@ -152,9 +152,8 @@ footer {
     -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 400px) {
   .artista-list {
-    /* On small screens, we are no longer using row direction but column */
     flex-direction: column;
   }
 }
@@ -237,15 +236,12 @@ button {
 }
 .audio {
   width: 100%;
-  /* min-height: 100px; */
   height: 120px;
   position: fixed;
-  /* top: 88vh; */
   background-color: rgb(0, 0, 0);
   border-top: 1px solid rgb(54, 52, 52);
   color: white;
   bottom: 0;
-  /* margin-bottom: 0; */
 }
 .audio__player {
   flex-direction: row !important;
@@ -399,26 +395,27 @@ p {
   flex-wrap: wrap;
   flex-direction: row;
 }
-.limpar-musicas{
+.limpar-musicas {
   display: flex;
   width: 19.5vh;
   font-size: 1rem;
   margin: 10px;
+  justify-content: center;
 }
-.botao-limpa{
+.botao-limpa {
   display: flex;
   justify-content: center;
 }
-.musica-recente-artista-detalhes{
+.musica-recente-artista-detalhes {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
 }
-.musica-recente-artista{
-  font-size:0.8rem ;
+.musica-recente-artista {
+  font-size: 0.8rem;
   cursor: pointer;
 }
-.musica-recente-titulo{
+.musica-recente-titulo {
   cursor: pointer;
 }

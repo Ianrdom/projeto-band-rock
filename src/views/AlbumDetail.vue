@@ -35,6 +35,7 @@ export default {
       "inicia_icon_musica",
       "pausa_icon_musica",
       "clear",
+      "AddMusicasDeAlbumsRecentes",
     ]),
     mostrar_artista(id) {
       this.$router.push(`/artistas/${id}`);
@@ -62,6 +63,7 @@ export default {
         progressBarColor: "rgb(167, 3, 3)",
         indicatorColor: "rgb(167, 3, 3)",
       };
+      this.AddMusicasDeAlbumsRecentes(musica.id);
       this.setOption(option);
       console.log(musica.isPlaying);
     },

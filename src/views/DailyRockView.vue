@@ -4,23 +4,13 @@ const deezerApi = new DeezerAPI();
 export default {
   data() {
     return {
-      bandas: [],
       musicas: [],
-      albums: [],
-      limit: 5,
     };
   },
   async created() {
-    const bandas = await deezerApi.GeneroBuscas();
-    this.bandas = bandas.data;
     const musicas = await deezerApi.MusicasBuscas(119);
     this.musicas = musicas.data;
     console.log(musicas);
-  },
-  computed: {
-    artistasLimitados() {
-      return this.limit ? this.bandas.slice(0, this.limit) : this.object;
-    },
   },
   methods: {
     mostrar_album(id) {
@@ -36,7 +26,7 @@ export default {
 <template>
   <div class="daily-filtro">
     <div class="daily-items">
-      <h1>Música que você pode gostar</h1>
+      <h1>Músicas que você pode gostar</h1>
       <div class="musicas-items" v-for="musica of musicas" :key="musica.id">
         <img :src="`${musica.album.cover_medium}`" />
         <div class="musica-details-daily">
@@ -52,21 +42,6 @@ export default {
         </div>
       </div>
     </div>
-    <div class="daily-items">
-      <h1>Sugestões de Artistas Novos</h1>
-      <div
-        class="artistas-items"
-        v-for="banda of artistasLimitados"
-        :key="banda.id"
-      >
-        <img :src="`${banda.picture_medium}`" />
-        <div>{{ banda.name }}</div>
-      </div>
-    </div>
-    <div class="daily-items">
-      <h1>Albúms novos</h1>
-      <div>Texto 3</div>
-    </div>
   </div>
 </template>
 <style scoped>
@@ -75,6 +50,7 @@ export default {
   padding: 10px;
   background-color: rgb(1, 2, 17);
   margin: 10px 0;
+  width: 90%;
 }
 .musicas-items img {
   max-height: 50px;

@@ -45,7 +45,7 @@ export default {
               </div>
               <div
                 class="musica-recente-artista"
-                @click="mostrar_artista(musica.artista.id)"
+                @click="mostrar_artista(musica.artist.id)"
               >
                 {{ musica.artist.name }}
               </div>

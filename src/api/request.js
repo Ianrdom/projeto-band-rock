@@ -61,4 +61,14 @@ export default class DeezerAPI {
       return Promise.reject(e);
     }
   }
+  async MusicaEspecificaBusca(id) {
+    try {
+      const { data } = await axios.get(`/track/${id}`);
+      // console.log(data);
+      return Promise.resolve(data);
+    } catch (e) {
+      console.log(e);
+      return Promise.reject(e);
+    }
+  }
 }
